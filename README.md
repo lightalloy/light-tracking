@@ -14,7 +14,7 @@
 ## Требования
 
 - Go 1.24 или выше
-- Node.js 20.12.0+ и npm (для frontend, требуется для Vite 7+)
+- Node.js 20.12.0+ и pnpm (для frontend, требуется для Vite 7+)
 - Wails v2 CLI
 
 ## Установка зависимостей
@@ -27,7 +27,7 @@ go mod download
 ### Frontend зависимости
 ```bash
 cd frontend
-npm install
+pnpm install
 ```
 
 ## Разработка
