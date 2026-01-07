@@ -5,14 +5,16 @@ import (
 	"time"
 
 	"light-tracking/internal/models"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 // App struct holds the application state
 type App struct {
-	ctx                context.Context
-	database           *Database
-	timer              *Timer
-	systrayManager     *SystrayManager
+	ctx                 context.Context
+	database            *Database
+	timer               *Timer
+	systrayManager      *SystrayManager
 	notificationManager *NotificationManager
 }
 
@@ -24,9 +26,9 @@ func NewApp() (*App, error) {
 	}
 
 	app := &App{
-		database:           db,
-		timer:              NewTimer(),
-		systrayManager:     nil, // Will be set in Startup
+		database:            db,
+		timer:               NewTimer(),
+		systrayManager:      nil, // Will be set in Startup
 		notificationManager: nil, // Will be set in Startup
 	}
 
@@ -127,8 +129,22 @@ func (a *App) DeleteTimeSlot(id int64) error {
 	return a.database.DeleteTimeSlot(id)
 }
 
+// OnWindowClose handles the window close event by hiding the window to tray
+// Returns false to prevent the window from closing
+func (a *App) OnWindowClose(ctx context.Context) bool {
+	// Hide the window
+	runtime.WindowHide(ctx)
+
+	// Update systray menu state if systray is initialized
+	if a.systrayManager != nil {
+		a.systrayManager.SetWindowHidden()
+	}
+
+	// Return false to prevent closing the application
+	return false
+}
+
 // Close closes the database connection
 func (a *App) Close() error {
 	return a.database.Close()
 }
-

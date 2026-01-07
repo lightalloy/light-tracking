@@ -294,6 +294,12 @@ func (s *SystrayManager) handleMenuClicks() {
 	}
 }
 
+// SetWindowHidden updates the menu state when window is hidden
+func (s *SystrayManager) SetWindowHidden() {
+	s.hideItem.Hide()
+	s.showItem.Show()
+}
+
 // formatTime formats hours, minutes, seconds as HH:MM:SS
 func formatTime(hours, minutes, seconds int64) string {
 	return fmt.Sprintf("%02d:%02d:%02d", hours, minutes, seconds)
