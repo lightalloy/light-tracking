@@ -17,6 +17,20 @@
 - Node.js 20.12.0+ и pnpm (для frontend, требуется для Vite 7+)
 - Wails v2 CLI
 
+### Системные зависимости
+
+#### Linux (Ubuntu/Debian/Xubuntu)
+
+Для работы системного трея необходимо установить:
+
+sudo apt install libayatana-appindicator3-dev#### macOS
+
+На macOS дополнительные зависимости не требуются.
+
+#### Windows
+
+На Windows дополнительные зависимости не требуются.
+
 ## Установка зависимостей
 
 ### Go зависимости
